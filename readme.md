@@ -58,3 +58,11 @@ ticket-system/
 ├── .gitignore
 └── README.md
 ```
+
+## Cores
+#ee1111 
+#000000
+#161616
+#1f1f1f
+#b7aeaf
+#4c0505
