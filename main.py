@@ -2,9 +2,12 @@ from models.cliente import Cliente
 from models.filme import Filme
 from models.sessao import Sessao
 from models.ingresso import Ingresso
-from services.catraca import Catraca
 from services.cinema import Cinema
 from models.sala import Sala
+from database import criar_banco
+import sqlite3
+
+criar_banco()
 
 cinema = Cinema()
 
@@ -41,6 +44,3 @@ cinema.vender_ingresso(ingresso1, cliente1, sessao1)
 cliente1.ingresso.pagar()  # Cliente paga o ingresso
 
 print(cliente1.ingresso.exibir_detalhes())
-
-catraca = Catraca()
-catraca.validar_ingresso(ingresso1)
