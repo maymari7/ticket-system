@@ -1,8 +1,18 @@
 import sqlite3
 
+CAMINHO_BANCO = "data/cinema.db"
+
+
+def conectar():
+    conexao = sqlite3.connect(CAMINHO_BANCO)
+    conexao.row_factory = (
+        sqlite3.Row
+    )  # acessa pelo nome da coluna: print(linha["titulo"]), não pela posição: print(linha[0])
+    return conexao
+
 
 def criar_banco():
-    conexao = sqlite3.connect("data/cinema.db")
+    conexao = conectar()
     cursor = conexao.cursor()
 
     cursor.execute("""
@@ -37,14 +47,3 @@ def criar_banco():
 
     conexao.commit()
     conexao.close()
-
-
-def carrega_tabela():
-    conexao = sqlite3.connect("data/cinema.db")
-    cursor = conexao.cursor()
-    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
-    print(cursor.fetchall())
-    conexao.close()
-
-
-carrega_tabela()
