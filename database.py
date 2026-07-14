@@ -21,6 +21,7 @@ def criar_banco():
                     titulo TEXT NOT NULL,
                     genero TEXT,
                     duracao TEXT,
+                    classificacao TEXT,
                     imagem TEXT
                 )
                 """)
@@ -44,6 +45,15 @@ def criar_banco():
                     FOREIGN KEY (sala_id) REFERENCES salas (id)
                 )
                 """)
+
+    cursor.execute("""
+            CREATE TABLE IF NOT EXISTS ingressos (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sessao_id INTEGER NOT NULL,
+                assento TEXT NOT NULL,
+                FOREIGN KEY (sessao_id) REFERENCES sessoes (id)
+        )
+        """)
 
     conexao.commit()
     conexao.close()
